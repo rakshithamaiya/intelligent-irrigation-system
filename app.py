@@ -129,8 +129,7 @@ page = st.sidebar.radio(
         "🎛️ Live Irrigation Predictor",
         "📊 Fuzzy Logic Visualizer",
         "📁 Dataset & Model Evaluation",
-        "⚖️ Baseline Comparison & Savings",
-        "ℹ️ College Viva & Architecture"
+        "⚖️ Baseline Comparison & Savings"
     ]
 )
 
@@ -535,52 +534,3 @@ elif page == "⚖️ Baseline Comparison & Savings":
           2. **No Data Collection Bottleneck:** In new farm regions or greenhouse micro-climates, labeled datasets do not exist. Fuzzy logic encodes agronomist heuristics directly.
           3. **Zero Hallucination / Edge Bounds:** Fuzzy systems cannot produce wild out-of-distribution values beyond defined consequents.
         """)
-
-
-# =====================================================================
-# PAGE 6: College Viva & Architecture
-# =====================================================================
-elif page == "ℹ️ College Viva & Architecture":
-    st.markdown("<div class='main-title'>ℹ️ College Project Documentation & Viva Guide</div>", unsafe_allow_html=True)
-    st.markdown("<div class='sub-title'>Comprehensive technical reference, viva Q&A answers, limitations, and future enhancements.</div>", unsafe_allow_html=True)
-
-    st.markdown("""
-    ### 🎓 Viva Voce Frequently Asked Questions & Model Answers
-
-    **Q1: Why did you choose Fuzzy Logic instead of Machine Learning (like Random Forest or Neural Networks)?**
-    > **Answer:** Machine learning models are data-driven black boxes that require thousands of labeled training records. In agriculture, collecting ground-truth soil water demand under all seasonal conditions is extremely expensive and time-consuming. Fuzzy Logic is a knowledge-driven Soft Computing technique that directly translates expert agronomic rules into continuous mathematical surfaces. It provides complete transparency, guarantees bounded outputs, and executes seamlessly on low-cost microcontrollers (e.g. ESP32, Arduino) without requiring GPUs.
-
-    **Q2: What is the difference between Mamdani and Sugeno (TSK) fuzzy inference?**
-    > **Answer:**
-    > - **Mamdani:** Consequents are fuzzy linguistic sets (e.g., *Irrigation is High*). Output requires graphical aggregation and centroid defuzzification. It is highly intuitive, interpretable, and closer to human linguistic reasoning.
-    > - **Takagi-Sugeno-Kang (TSK):** Consequents are crisp mathematical functions or constants (e.g., $y = a x_1 + b x_2$). Defuzzification is a weighted average, which is computationally faster but less linguistically transparent. We selected Mamdani for maximal agronomic interpretability.
-
-    **Q3: How did you select the membership function shapes?**
-    > **Answer:** We used **Trapezoidal** membership functions for the outer boundary sets (`Dry`/`Wet`, `Cool`/`Hot`, `Low`/`High`, `Off`/`High`) because physical parameters saturate at extremes (e.g., soil moisture below 20% remains severely dry, and above 80% remains saturated). We used **Triangular** membership functions for the intermediate sets (`Moderate`, `Normal`, `Medium`) to establish a clear optimal central peak with linear transition slopes.
-
-    **Q4: How did you ensure the rule base is complete and consistent?**
-    > **Answer:** With 3 inputs having 3 fuzzy sets each, the full Cartesian product is $3 \times 3 \times 3 = 27$ rule combinations. Every combination was systematically mapped to an agronomic consequence based on soil depletion and evapotranspiration physics, ensuring zero rule conflict and 100% input coverage.
-
-    ---
-    ### ⚙️ Technologies & Libraries Used
-    - **Language:** Python 3.14+
-    - **Web Framework:** Streamlit (Responsive, interactive web dashboard)
-    - **Soft Computing / Fuzzy Engine:** `scikit-fuzzy` + Pure NumPy fallback engine
-    - **Data & Numerical Processing:** NumPy, Pandas
-    - **Plotting & Visualizations:** Matplotlib
-    - **Automated Quality Testing:** Pytest (25 passing automated tests)
-    - **Comparative Machine Learning:** scikit-learn (MLPRegressor)
-
-    ---
-    ### 🛑 Limitations
-    1. **Soil Type Homogeneity:** The current system assumes a general loam soil profile. Heavy clay or loose sand have differing water retention curves and infiltration rates.
-    2. **Static Crop Coefficient:** The model currently simulates a generic crop without accounting for growth phenology (germination vs flowering vs harvest).
-    3. **Software Simulation:** Currently runs on synthetic telemetry rather than live physical IoT sensors.
-
-    ---
-    ### 🚀 Future Scope & Enhancements
-    1. **Physical IoT Integration:** Interface with real hardware (ESP32/Raspberry Pi) via MQTT or LoRaWAN with capacitive soil moisture sensors and DHT22 temperature/humidity probes.
-    2. **Crop-Specific Profiles:** Add dropdown selection for crop types (Wheat, Rice, Cotton, Tomato) that dynamically adjust membership parameters and crop coefficient ($K_c$).
-    3. **Weather API Forecast Ingestion:** Integrate OpenWeatherMap API to inhibit irrigation if rain is forecasted within the next 6 hours.
-    4. **Mobile Push Notifications:** Trigger WhatsApp / SMS alerts to farmers when pump cycles begin or low moisture persists.
-    """)
