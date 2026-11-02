@@ -384,7 +384,7 @@ elif page == "📊 Fuzzy Logic Visualizer":
     plt.close(fig_mf)
 
     st.markdown("---")
-    st.markdown("### 📚 Soft Computing Theory Guide (For Viva & Presentation)")
+    st.markdown("### 📚 Soft Computing Theory")
 
     c1, c2 = st.columns(2)
     with c1:
